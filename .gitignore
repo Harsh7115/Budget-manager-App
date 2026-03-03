@@ -1,0 +1,47 @@
+# Compiled Java class files
+*.class
+
+# Package files
+*.jar
+*.war
+*.ear
+*.zip
+*.tar.gz
+*.rar
+
+# IDE files
+.idea/
+*.iml
+.project
+.classpath
+.settings/
+.metadata/
+
+# Eclipse
+bin/
+*.launch
+
+# IntelliJ IDEA
+out/
+
+# NetBeans
+nbproject/
+nbbuild/
+dist/
+nbdist/
+.nb-gradle/
+
+# VS Code
+.vscode/
+
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# User data (runtime generated)
+user_data.txt
+*.csv.bak
+
+# Logs
+*.log
