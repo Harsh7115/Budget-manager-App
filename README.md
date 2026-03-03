@@ -1,31 +1,77 @@
-Budget Manager App - Personal Finance Assistant
+# Budget Manager App
 
-Project Overview Personal Finance Assistant is a Java desktop application that helps users manage their personal finances. The application demonstrates the implementation of object-oriented design principles, GUI development using Swing, and secure user data management.
+![Java](https://img.shields.io/badge/Java-ED8B00?style=flat&logo=java&logoColor=white)
+![Swing](https://img.shields.io/badge/GUI-Java%20Swing-blue?style=flat)
+![JUnit](https://img.shields.io/badge/Tested%20with-JUnit-green?style=flat)
+![License](https://img.shields.io/badge/license-MIT-lightgrey?style=flat)
 
-Key Classes and Functionality
+A Java desktop personal finance application with user authentication, expense tracking, budget management, and financial report generation. Built with Swing and follows object-oriented design principles throughout.
 
-Main Functionality Classes • FinanceApp: Main application window implementing tabbed interface for expenses, budgets, and reports. • ExpenseManager: Manages expense data and operations, including adding, editing, and filtering expenses. • BudgetManager: Handles budget allocations and tracks spending against budgets. • ReportManager: Generates financial reports and provides data visualization.
+## Screenshots
 
-User Interface Classes • DashboardPanel: Shows financial overview and recent transactions. • ExpenseTrackerPanel: Provides interface for managing expenses with filtering capabilities. • BudgetManagerPanel: Displays budget progress with visual indicators for spending thresholds • ReportManagerPanel: Shows financial reports with pie charts and spending analysis
+| Dashboard | Expense Tracker | Reports |
+|-----------|----------------|---------|
+| ![dashboard](dashboard.png) | ![expense](expense.png) | ![report](report.png) |
 
-Data & Security Classes • User: Handles user authentication with secure password hashing • DataPersistenceManager: Manages file-based storage of user data and transactions • TransactionFileHandler: Handles CSV import/export functionality
+## Features
 
-Features • User authentication and account management • Expense tracking and categorization • Monthly budget management with visual progress tracking • Financial reporting with charts • Data persistence and file handling • Transaction import/export
+- **User Authentication** — secure login with hashed passwords and account management
+- **Expense Tracking** — add, edit, filter, and categorize transactions
+- **Budget Management** — set monthly budgets per category with visual progress indicators
+- **Financial Reports** — pie charts and spending analysis across time periods
+- **CSV Import/Export** — move transaction data in and out of the app
+- **Data Persistence** — all data saved locally via file-based storage
+- **JUnit Test Suite** — tests covering auth, expenses, budgets, and persistence
 
-How to Run
+## Project Structure
 
-Place the Project in you preferred IDE and run Main.java
-The application will automatically create necessary data directories
-Use "Create Account" to register a new user
-Login with your credentials
-Add expenses through the Expense tab
-Set budgets in the Budget tab
-View reports in the Reports tab
-Can switch between different months of data in Budget and Report Panels.
-Try importing/exporting transactions using CSV files
-Testing JUnit tests are provided for core functionality including:
+```
+Budget-manager-App/
+├── Main.java                    # Entry point
+├── FinanceApp.java              # Main tabbed application window
+├── User.java                    # User model + auth (password hashing)
+├── ExpenseManager.java          # Expense CRUD + filtering logic
+├── BudgetManager.java           # Budget allocation + threshold tracking
+├── ReportManager.java           # Report generation + chart data
+├── DataPersistenceManager.java  # File-based storage (read/write)
+├── TransactionFileHandler.java  # CSV import/export
+├── DashboardPanel.java          # Overview UI — recent transactions + summary
+├── ExpenseTrackerPanel.java     # Expense management UI
+├── BudgetManagerPanel.java      # Budget progress UI
+├── ReportManagerPanel.java      # Charts + analytics UI
+├── SettingsPanel.java           # User account settings
+└── *Test.java                   # JUnit tests
+```
 
-User authentication
-Expense operations
-Budget calculations
-Data persistence
+## Getting Started
+
+**Requirements:** Java 11+, JUnit 4 (tests only)
+
+```bash
+# Compile all sources
+javac *.java
+
+# Run the app
+java Main
+
+# Run tests
+java -cp .:junit-4.13.jar org.junit.runner.JUnitCore UserTest ExpenseTest BudgetManagerTest ReportManagerTest
+```
+
+**First run:**
+1. Click "Create Account" and register
+2. Log in with your credentials
+3. Start adding expenses under the **Expense** tab
+4. Set monthly budgets under **Budget**
+5. View spending breakdowns under **Reports**
+
+## Tech Stack
+
+| Area | Technology |
+|------|-----------|
+| Language | Java 11 |
+| GUI | Java Swing |
+| Charts | Custom Swing rendering |
+| Storage | File-based (flat file) |
+| Auth | SHA-256 password hashing |
+| Testing | JUnit 4 |
