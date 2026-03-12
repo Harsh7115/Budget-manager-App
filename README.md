@@ -75,3 +75,5 @@ java -cp .:junit-4.13.jar org.junit.runner.JUnitCore UserTest ExpenseTest Budget
 | Storage | File-based (flat file) |
 | Auth | SHA-256 password hashing |
 | Testing | JUnit 4 |
+
+<!-- Last reviewed: March 2026 -->
