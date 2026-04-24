@@ -1,0 +1,57 @@
+name: Dependency Review
+
+# Run on every pull request to catch newly introduced vulnerable dependencies
+on:
+  pull_request:
+    branches: [ main, master ]
+
+permissions:
+  contents: read
+  pull-requests: write
+
+jobs:
+  dependency-review:
+    name: Dependency Review
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Run Dependency Review Action
+        uses: actions/dependency-review-action@v4
+        with:
+          # Fail if any dependency has a CVSS score >= 7 (High or Critical)
+          fail-on-severity: high
+          # Post a summary comment on the PR
+          comment-summary-in-pr: always
+          # Deny any dependency under a GPL-family license (adjust as needed)
+          deny-licenses: GPL-2.0, GPL-3.0, LGPL-2.1
+
+  outdated-check:
+    name: Check for Outdated Dependencies
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up JDK 17
+        uses: actions/setup-java@v4
+        with:
+          java-version: '17'
+          distribution: temurin
+          cache: maven
+
+      - name: List outdated dependencies
+        run: |
+          mvn --batch-mode versions:display-dependency-updates \
+            | grep '\->' | sort -u || true
+
+      - name: Check for SNAPSHOT dependencies in release builds
+        run: |
+          if grep -q '<version>.*SNAPSHOT</version>' pom.xml; then
+            echo 'WARNING: SNAPSHOT dependency detected in pom.xml'
+          else
+            echo 'No SNAPSHOT dependencies found.'
+          fi
